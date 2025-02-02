@@ -1,8 +1,11 @@
 const express = require('express')
 const compression = require('compression')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
+
 const app = express()
 app.use(compression())
+app.use(morgan('combined'))
 
 const wiseWebhookRouter = express.Router()
 wiseWebhookRouter.use(bodyParser.text({ type: '*/*' }))
