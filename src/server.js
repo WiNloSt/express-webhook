@@ -3,7 +3,7 @@ import compression from 'compression'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import { isVerified } from './verify.mjs'
-// import Api from './api.mjs'
+import Api from './api.mjs'
 
 const isDev = process.env.NODE_ENV === 'development'
 if (isDev) {
@@ -25,11 +25,12 @@ wiseWebhookRouter.post('/', function (req, res) {
     const jsonBody = JSON.parse(originalBody)
     if (isVerified(originalBody, signatureHeader) || isDev) {
       console.log('body', JSON.stringify(jsonBody, null, 2))
-      // Api.automateBudgets()
-      //   .then((responses) => {
-      //     console.log('automate budgets', responses)
-      //   })
-      //   .catch((error) => console.error(error))
+      // Testing: every jar is deposited for only $1
+      Api.automateBudgets()
+        .then((responses) => {
+          console.log('automate budgets', responses)
+        })
+        .catch((error) => console.error(error))
     } else {
       console.error('Invalid signature')
       return res.status(400).send('Invalid signature')
