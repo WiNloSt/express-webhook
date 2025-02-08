@@ -10,6 +10,13 @@ Oj3Vos0VdBIs/gAyJ/4yyQFCXYte64I7ssrlbGRaco4nKF3HmaNhxwyKyJafz19e
 HwIDAQAB
 -----END PUBLIC KEY-----
 `
+
+/**
+ *
+ * @param {string} rawBody
+ * @param {string} signatureHeader
+ * @returns
+ */
 export function isVerified(rawBody, signatureHeader) {
   if (!signatureHeader) {
     return false

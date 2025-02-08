@@ -5,7 +5,7 @@ const API_KEY = process.env.API_KEY
 const HEADERS = { Authorization: `Bearer ${API_KEY}`, 'Content-Type': 'application/json' }
 const API_URL = 'https://api.transferwise.com'
 const PROFILE_ID = process.env.PROFILE_ID
-const BALANCES = JSON.parse(process.env.BALANCES)
+const BALANCES = JSON.parse(process.env.BALANCES || '{}')
 
 /**
  * @typedef {'usd' | 'saving' | 'insurance' | 'car_insurance' | 'tax' | 'child' | 'travel' | 'living_expense' | 'house'} Balance
@@ -84,6 +84,9 @@ const Api = {
 
 export default Api
 
+/**
+ * @type {typeof nodeFetch}
+ */
 const fetch = (url, options) => {
   return nodeFetch(`${API_URL}${url}`, options)
 }

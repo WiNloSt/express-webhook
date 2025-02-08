@@ -3,7 +3,7 @@ import compression from 'compression'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import { isVerified } from './verify.mjs'
-import Api from './api.mjs'
+// import Api from './api.mjs'
 
 const isDev = process.env.NODE_ENV === 'development'
 if (isDev) {
@@ -17,9 +17,10 @@ app.use(morgan('combined'))
 const wiseWebhookRouter = express.Router()
 wiseWebhookRouter.use(bodyParser.text({ type: '*/*' }))
 app.use('/wise-webhook', wiseWebhookRouter)
+// @ts-ignore
 wiseWebhookRouter.post('/', function (req, res) {
   const originalBody = req.body
-  const signatureHeader = req.headers['x-signature-sha256']
+  const signatureHeader = /** @type {string}*/ (req.headers['x-signature-sha256'])
   try {
     const jsonBody = JSON.parse(originalBody)
     if (isVerified(originalBody, signatureHeader) || isDev) {
@@ -35,6 +36,7 @@ wiseWebhookRouter.post('/', function (req, res) {
     }
     res.send('success')
   } catch (error) {
+    // @ts-ignore
     res.status(400).send(error.message)
   }
 })
