@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.js",
+    "dev": "export $(cat .env) && NODE_ENV=development nodemon src/server.js",
     "prod": "NODE_ENV=production node src/server.js",
     "docker:build": "docker compose build",
-    "docker:up": "docker compose up"
+    "docker:up": "docker compose up",
+    "test": "curl --data '{\"key\":\"value\"}' --header 'Content-Type: application/json' localhost:3001/wise-webhook"
   },
   "author": "",
   "license": "ISC",
