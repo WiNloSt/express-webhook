@@ -1,3 +1,4 @@
+import './setupDevEnv.mjs'
 import express from 'express'
 import compression from 'compression'
 import bodyParser from 'body-parser'
@@ -6,9 +7,6 @@ import { isVerified } from './verify.mjs'
 import Api from './api.mjs'
 
 const isDev = process.env.NODE_ENV === 'development'
-if (isDev) {
-  import('./setupDevEnv.mjs')
-}
 
 const app = express()
 app.use(compression())
