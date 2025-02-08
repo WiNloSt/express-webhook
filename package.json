@@ -2,8 +2,9 @@
   "name": "express-sample",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "export $(cat .env) && NODE_ENV=development nodemon src/server.js",
+    "dev": "NODE_ENV=development nodemon src/server.js",
     "prod": "NODE_ENV=production node src/server.js",
     "docker:build": "docker compose build",
     "docker:up": "docker compose up",
@@ -16,9 +17,11 @@
     "body-parser": "^1.20.3",
     "compression": "^1.7.5",
     "express": "^4.21.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
+    "dotenv": "^16.4.7",
     "nodemon": "^3.1.9"
   }
 }

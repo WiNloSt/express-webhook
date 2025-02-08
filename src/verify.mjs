@@ -1,4 +1,4 @@
-const crypto = require('crypto')
+import crypto from 'crypto'
 
 const PRODUCTION_SIGNATURE = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvO8vXV+JksBzZAY6GhSO
@@ -10,7 +10,7 @@ Oj3Vos0VdBIs/gAyJ/4yyQFCXYte64I7ssrlbGRaco4nKF3HmaNhxwyKyJafz19e
 HwIDAQAB
 -----END PUBLIC KEY-----
 `
-exports.isVerified = function isVerified(rawBody, signatureHeader) {
+export function isVerified(rawBody, signatureHeader) {
   if (!signatureHeader) {
     return false
   }
