@@ -26,11 +26,11 @@ wiseWebhookRouter.post('/', function (req, res) {
     if (isVerified(originalBody, signatureHeader) || isDev) {
       console.log('body', JSON.stringify(jsonBody, null, 2))
       // Testing: every jar is deposited for only $1
-      Api.automateBudgets()
-        .then((responses) => {
-          console.log('automate budgets', responses)
-        })
-        .catch((error) => console.error(error))
+      // Api.automateBudgets()
+      //   .then((responses) => {
+      //     console.log('automate budgets', responses)
+      //   })
+      //   .catch((error) => console.error(error))
     } else {
       console.error('Invalid signature')
       return res.status(400).send('Invalid signature')
