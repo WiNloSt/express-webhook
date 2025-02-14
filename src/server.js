@@ -23,12 +23,15 @@ wiseWebhookRouter.post('/', function (req, res) {
     const jsonBody = JSON.parse(originalBody)
     if (isVerified(originalBody, signatureHeader) || isDev) {
       console.log('body', JSON.stringify(jsonBody, null, 2))
-      // Testing: every jar is deposited for only $1
-      // Api.automateBudgets()
-      //   .then((responses) => {
-      //     console.log('automate budgets', responses)
-      //   })
-      //   .catch((error) => console.error(error))
+      const isSalary = jsonBody?.data?.amount > (process.env.SALARY_THRESHOLD || 0)
+      if (isSalary) {
+        console.log('is Salary')
+        Api.automateBudgets()
+          .then((responses) => {
+            console.log('automate budgets', responses)
+          })
+          .catch((error) => console.error(error))
+      }
     } else {
       console.error('Invalid signature')
       return res.status(400).send('Invalid signature')

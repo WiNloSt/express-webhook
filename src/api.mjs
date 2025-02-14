@@ -17,13 +17,13 @@ const BALANCES = JSON.parse(process.env.BALANCES || '{}')
 const BALANCES_BUDGET = {
   usd: 0,
   saving: 0,
-  insurance: 1,
-  car_insurance: 1,
-  tax: 1,
-  child: 1,
-  travel: 1,
-  living_expense: 1,
-  house: 1,
+  insurance: 260,
+  car_insurance: 30,
+  tax: 100,
+  child: 300,
+  travel: 50,
+  living_expense: 400,
+  house: 300,
 }
 
 const Api = {
