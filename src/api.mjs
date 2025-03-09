@@ -17,7 +17,7 @@ const BALANCES = JSON.parse(process.env.BALANCES || '{}')
 const BALANCES_BUDGET = {
   usd: 0,
   saving: 0,
-  insurance: 260,
+  insurance: 180,
   car_insurance: 50,
   tax: 100,
   child: 300,
